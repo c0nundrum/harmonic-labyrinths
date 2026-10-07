@@ -37,7 +37,7 @@ A series is metadata connecting normal pieces. It should not require a separate 
 
 ## Minimal metadata
 
-The exact syntax depends on the eventual static-site implementation, but the content model should be able to express:
+Content is Markdown with YAML front matter, built by Hugo.
 
 ```yaml
 title: "..."
@@ -48,13 +48,42 @@ draft: false
 tags:
   - ai
 series:
-  name: "..."
-  order: 1
+  - "..."
+series_weight: 1
 ```
 
 Only `title`, `date`, and publication state should be considered fundamental.
 
 Do not require authors to fill metadata fields solely because a generator supports them.
+
+Conventions:
+
+- `updated` is optional; when present it becomes the page's last-modified date (sitemap, feeds).
+- `tags` and `series` must be YAML lists, even with one entry. A bare string is split on whitespace.
+- `series_weight` sets reading order within a series (lower first).
+- `draft: true` keeps a piece out of the production build entirely.
+
+## Where files go
+
+| Type | Source | Published URL |
+| --- | --- | --- |
+| Essay | `content/writing/<slug>.md` | `/<slug>/` |
+| Note | `content/notes/<slug>.md` | `/notes/<slug>/` |
+
+The slug is the file name. A piece with images can be a folder instead: `content/writing/<slug>/index.md`, with assets beside it.
+
+Set `slug:` in front matter only to decouple the URL from the file name.
+
+Essays share the root path with site sections, so an essay slug must not be `writing`, `notes`, `about`, `tags`, or `series`.
+
+Start a new piece with:
+
+```sh
+hugo new content writing/<slug>.md
+hugo new content notes/<slug>.md
+```
+
+New pieces start as drafts.
 
 ## Slugs and URLs
 

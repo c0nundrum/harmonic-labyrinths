@@ -1,0 +1,29 @@
+# Harmonic Labyrinths — Hugo configuration.
+# Durable rules live in README.md, DESIGN.md, and docs/CONTENT.md.
+
+# Provisional: the production domain is not decided yet (see docs/ROADMAP.md).
+# CI overrides this with the URL GitHub Pages reports.
+baseURL = "https://c0nundrum.github.io/harmonic-labyrinths/"
+locale = "en"
+title = "Harmonic Labyrinths"
+enableRobotsTXT = true
+# Sentence case for generated titles (DESIGN.md §3).
+titleCaseStyle = "firstupper"
+
+[module.hugoVersion]
+  min = "0.167.0"
+  extended = false
+
+# Essays live at the site root (/context-is-not-memory/); notes under /notes/.
+# The slug is the file or bundle name unless `slug` is set in front matter.
+[permalinks.page]
+  writing = "/:slugorcontentbasename/"
+  notes = "/notes/:slugorcontentbasename/"
+
+[taxonomies]
+  tag = "tags"
+  series = "series"
+
+# Authors write `updated:` as documented in docs/CONTENT.md.
+[frontmatter]
+  lastmod = ["updated", "lastmod", "date"]

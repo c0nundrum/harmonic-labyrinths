@@ -33,12 +33,23 @@ The goals are simple:
 - [DESIGN.md](./DESIGN.md) — visual language and UI rules.
 - [AGENTS.md](./AGENTS.md) — constraints for coding agents and contributors.
 - [docs/CONTENT.md](./docs/CONTENT.md) — editorial structure and article conventions.
+- [docs/ROADMAP.md](./docs/ROADMAP.md) — implementation phases toward launch.
+
+## Working locally
+
+The site is built with [Hugo](https://gohugo.io/) (standard edition, v0.167.0 or newer). It is a single binary; there is no Node or Ruby toolchain.
+
+```sh
+brew install hugo          # or see gohugo.io/installation
+hugo server --buildDrafts  # preview at http://localhost:1313/harmonic-labyrinths/
+hugo --gc --minify         # production build into public/
+```
 
 ## Status
 
-Bootstrap phase. The publishing stack and implementation are intentionally not fixed by these docs yet.
+Bootstrap phase: scaffolding is in place, design and templates are not. See [docs/ROADMAP.md](./docs/ROADMAP.md).
 
-The first implementation should optimize for GitHub Pages, Markdown-native authoring, mathematical notation, syntax-highlighted code, diagrams, RSS, and excellent reading performance before adding anything more elaborate.
+Hugo was chosen because it covers Markdown, build-time syntax highlighting, build-time math, footnotes, RSS, sitemaps, and draft exclusion without adding package dependencies.
 
 ## Design reference
 
