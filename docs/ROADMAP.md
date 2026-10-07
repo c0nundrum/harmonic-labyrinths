@@ -40,7 +40,7 @@ Hugo configuration, permalinks, taxonomies, archetypes, section stubs, provision
 
 IBM Plex Serif for titles and dialogue speech; the H/L trip-let mark and home figure; dialogue form; figure-ground footer. Rules in DESIGN.md §15.
 
-## Phase 4 — Delivery
+## Phase 4 — Delivery ✓
 
 - `.github/workflows/pages.yml`: pinned Hugo, build, deploy with the official Pages actions.
 - `tools/check.sh` on every push and pull request: build with `--panicOnWarning`, internal links and fragments (`htmltest`), axe on every sitemap page plus the specimen and 404 (`pa11y-ci`), RSS / sitemap validity.
