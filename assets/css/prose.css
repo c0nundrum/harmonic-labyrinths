@@ -152,6 +152,52 @@
   margin-block-start: var(--space-3);
 }
 
+/*
+ * Dialogue (DESIGN.md §15): a definition list marked {.dialogue}.
+ * Speakers hang in the left breakout like a play script; speech is serif.
+ */
+
+.prose > .dialogue {
+  grid-column: wide;
+  display: grid;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+}
+
+.prose .dialogue dt {
+  grid-column: content;
+  font-size: var(--text-small);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink-muted);
+}
+
+.prose .dialogue dd {
+  grid-column: content;
+  padding: 0;
+  font-family: var(--font-serif);
+  letter-spacing: 0;
+}
+
+.prose .dialogue dd + dt {
+  margin-block-start: var(--space-6);
+}
+
+.prose .dialogue dd + dd {
+  margin-block-start: var(--space-3);
+}
+
+@media (min-width: 56rem) {
+  .prose .dialogue dt {
+    grid-column: wide-start / content-start;
+    padding-inline-end: var(--space-4);
+    text-align: end;
+  }
+
+  .prose .dialogue dt + dd {
+    margin-block-start: 0;
+  }
+}
+
 /* Quotations */
 
 .prose blockquote {

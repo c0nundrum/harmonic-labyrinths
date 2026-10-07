@@ -84,10 +84,18 @@ main:focus {
 .site-title {
   display: flex;
   align-items: center;
+  gap: var(--space-3);
   min-height: var(--touch-target);
   color: var(--color-ink);
-  font-weight: var(--weight-semibold);
+  font-family: var(--font-serif);
+  font-size: var(--text-lead);
+  letter-spacing: 0;
   text-decoration: none;
+}
+
+.site-title svg {
+  width: auto;
+  height: var(--space-8);
 }
 
 .site-title:hover {
@@ -133,6 +141,20 @@ main:focus {
   line-height: var(--leading-small);
 }
 
+.site-footer__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: var(--text-body);
+}
+
+/* Figure-ground: H and L exist only as the absence of squares. */
+.site-footer__identity svg {
+  flex: none;
+  color: var(--color-ink-muted);
+}
+
 .site-footer__inner {
   display: flex;
   flex-wrap: wrap;
@@ -163,6 +185,34 @@ main:focus {
 }
 
 /* Index pages: home, sections, taxonomies, 404 */
+
+/* Home: title and the trip-let figure share the content and right breakout columns. */
+.grid > .home-intro {
+  grid-column: content-start / wide-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--space-8);
+}
+
+.home-intro > div > * + * {
+  margin-block-start: var(--space-4);
+}
+
+.home-intro img {
+  width: 11rem;
+}
+
+@media (max-width: 41.99rem) {
+  .grid > .home-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .home-intro img {
+    grid-row: 1;
+    width: 7rem;
+  }
+}
 
 .page {
   padding-block-start: var(--space-16);

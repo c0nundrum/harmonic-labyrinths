@@ -29,6 +29,24 @@ Examples:
 - small technical discoveries;
 - working ideas worth preserving.
 
+### Dialogues
+
+Not a separate type: any essay or note may be written wholly or partly as a dialogue between named voices, in the manner of *Gödel, Escher, Bach*.
+
+Write it as a Markdown definition list with the speaker as the term, then mark the list with `{.dialogue}` on the line after it:
+
+```markdown
+Achilles
+: Have you noticed that this sentence is talking about itself?
+
+Tortoise
+: Only when you point it out.
+: A second paragraph from the same speaker is another `: ` line.
+{.dialogue}
+```
+
+Prose may continue before and after. Voices should be distinct positions, not a frame for a monologue.
+
 ### Series
 
 A sequence of essays or notes with an intentional reading order.

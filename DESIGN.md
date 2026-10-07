@@ -1,7 +1,7 @@
 ---
-version: 0.1
+version: 0.2
 name: harmonic-labyrinths-design
-description: "A reading-first personal technical blog with Carbon-inspired precision: IBM Plex typography, a restrained blue accent, square geometry, hairlines instead of shadows, and a 4px spatial rhythm."
+description: "A reading-first personal technical blog with Carbon-inspired precision and a bookish voice: IBM Plex Sans and Serif, a restrained blue accent, square geometry, hairlines instead of shadows, a 4px spatial rhythm, and a few structural motifs from Gödel, Escher, Bach."
 reference: "https://getdesign.md/ibm/design-md"
 ---
 
@@ -13,6 +13,8 @@ The system begins with the IBM design analysis published by getdesign.md and the
 
 Harmonic Labyrinths is independent and is not affiliated with or endorsed by IBM.
 
+The second influence is the site's namesake, Douglas Hofstadter's *Gödel, Escher, Bach*: a book about self-reference, recursion, and voices in counterpoint, which alternates chapters with dialogues. Its influence is structural and typographic, never pictorial (§15).
+
 Every value in this document is translated into CSS exactly once, as custom properties in `assets/css/tokens.css`. Stylesheets use tokens, not raw values; change a value here first, then in the tokens file.
 
 ## 1. Design character
@@ -23,7 +25,8 @@ The site should feel:
 - editorial before promotional;
 - dense enough to reward exploration, but never crowded;
 - intentionally flat rather than decorative;
-- recognizably personal without becoming visually noisy.
+- recognizably personal without becoming visually noisy;
+- bookish: closer to a well-set book than to a product interface.
 
 The writing is the dominant object on the page. Navigation and chrome should recede.
 
@@ -80,6 +83,14 @@ Everything else in code, including names, operators, and punctuation, stays inve
 
 Use **IBM Plex Sans** for interface and prose.
 
+Use **IBM Plex Serif** for the voice of the book:
+
+- display text, article and page titles, and H1–H3;
+- the site name;
+- speech in dialogues (§15).
+
+H4 and smaller headings, metadata, navigation, and body prose stay sans. Serif headings use no positive tracking.
+
 Use **IBM Plex Mono** for:
 
 - code;
@@ -93,6 +104,7 @@ Fallbacks:
 
 ```css
 font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+font-family: "IBM Plex Serif", Georgia, "Times New Roman", serif;
 font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 ```
 
@@ -350,7 +362,9 @@ Accessibility is part of the design system, not a later audit.
 - bold every heading;
 - add animation for atmosphere;
 - add JavaScript where HTML and CSS solve the problem;
-- sacrifice reading quality to preserve a grid.
+- sacrifice reading quality to preserve a grid;
+- use Escher's artwork, the cover of *Gödel, Escher, Bach*, or other borrowed imagery;
+- scatter GEB references as decoration beyond the places §15 defines.
 
 ## 14. Decision order
 
@@ -363,3 +377,34 @@ When design rules conflict, decide in this order:
 5. visual resemblance to the reference system.
 
 The site exists to carry ideas. The design exists to make those ideas easier to encounter.
+
+## 15. Identity
+
+Three motifs carry the *Gödel, Escher, Bach* influence. Each is structural, made from the site's own letterforms, and confined to a fixed place.
+
+### The trip-let
+
+The mark is a block of cubes whose shadow along one axis is the letter **H** and along the other is **L**, after the carved blocks on the cover of the book.
+
+- The full figure (block and both shadows on two walls) appears once, on the home page.
+- The block alone is the header mark and the favicon.
+- It is drawn in the neutral palette only: canvas, surfaces, grays, and ink.
+
+### Figure and ground
+
+In the footer, H and L exist only as the absence of squares in a small grid: the letters are ground, not figure. Drawn in muted ink on the inverse surface.
+
+### Dialogue
+
+Pieces may be written, wholly or in part, as dialogue between named voices, as the book alternates dialogues with chapters.
+
+- Speakers hang in the left breakout on wide screens, like a play script, in small sans semibold.
+- Speech is set in Plex Serif at prose size.
+- On narrow screens the speaker sits above the speech.
+
+### Rules
+
+- All artwork is original and generated from source (`tools/identity.py`); nothing is traced from the book or from Escher.
+- Motifs do not appear in article bodies, indexes, or cards.
+- New motifs require an addition to this section first.
+

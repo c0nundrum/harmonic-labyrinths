@@ -61,3 +61,7 @@ titleCaseStyle = "firstupper"
 
 [services.rss]
   limit = 20
+
+# Block attributes, e.g. {.dialogue} after a definition list (docs/CONTENT.md).
+[markup.goldmark.parser.attribute]
+  block = true

@@ -1,10 +1,14 @@
 {{ define "main" }}
 <div class="page grid">
-  <header class="page-header">
-    <h1 class="display">{{ site.Title }}</h1>
-    {{- with .Description }}
-    <p class="lead">{{ . }}</p>
-    {{- end }}
+  <header class="home-intro">
+    <div>
+      <h1 class="display">{{ site.Title }}</h1>
+      {{- with .Description }}
+      <p class="lead">{{ . }}</p>
+      {{- end }}
+    </div>
+    <img src="{{ "images/triplet.svg" | relURL }}" width="170" height="196"
+      alt="A block shaped so that light from one side casts an H on the wall behind it, and light from the other side casts an L.">
   </header>
   {{- range slice "writing" "notes" }}
   {{- with site.GetPage (printf "/%s" .) }}

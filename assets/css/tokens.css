@@ -40,6 +40,7 @@
 
   /* Typography — DESIGN.md §3 */
   --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-display: clamp(2.75rem, 7vw, 4.75rem);

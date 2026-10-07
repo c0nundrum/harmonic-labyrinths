@@ -36,6 +36,10 @@ Hugo configuration, permalinks, taxonomies, archetypes, section stubs, provision
 - Build-time math via `transform.ToMath`; display equations in the wide column.
 - RSS (site and per section) and sitemap; verify drafts never appear.
 
+## Phase 3½ — Identity ✓
+
+IBM Plex Serif for titles and dialogue speech; the H/L trip-let mark and home figure; dialogue form; figure-ground footer. Rules in DESIGN.md §15.
+
 ## Phase 4 — Delivery
 
 - `.github/workflows/pages.yml`: pinned Hugo, build, deploy with the official Pages actions.

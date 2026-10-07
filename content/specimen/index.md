@@ -49,6 +49,21 @@ Essay
 Note
 : A shorter piece that is useful without pretending to be finished.
 
+## Dialogue
+
+A definition list marked as a dialogue:
+
+Achilles
+: Have you noticed that this sentence is talking about itself?
+
+Tortoise
+: Only when you point it out. Before that, it was minding its own business.
+: A second paragraph from the same speaker continues the turn.
+
+Achilles
+: Then the page is describing the page. We are in a loop.
+{.dialogue}
+
 ## Quotation
 
 > A blockquote sits in the reading column with a quiet rule on its leading edge. It may run to several sentences, and should stay readable at the muted ink color.
