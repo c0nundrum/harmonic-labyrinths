@@ -1,0 +1,19 @@
+{{- /*
+  Renders TeX to KaTeX HTML + MathML at build time (DESIGN.md §8). Pages with
+  math record it so the KaTeX stylesheet loads only where needed. A TeX error
+  fails the build rather than publishing broken math.
+*/ -}}
+{{- $block := eq .Type "block" -}}
+{{- $opts := dict "output" "htmlAndMathml" "displayMode" $block "throwOnError" true -}}
+{{- with try (transform.ToMath .Inner $opts) -}}
+  {{- with .Err -}}
+    {{- errorf "%s: KaTeX could not render %q: %s" $.Position $.Inner . -}}
+  {{- else -}}
+    {{- $.Page.Store.Set "hasMath" true -}}
+    {{- if $block -}}
+<div class="math-display">{{ .Value }}</div>
+    {{- else -}}
+      {{- .Value -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

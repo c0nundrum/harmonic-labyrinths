@@ -54,6 +54,18 @@ The palette is intentionally narrow.
 | Warning | `#f1c21b` | Semantic warning only |
 | Error | `#da1e28` | Semantic error only |
 
+Code blocks sit on the inverse surface, where the primary blue fails text contrast (3.6:1). Syntax colors there are lighter steps of the same hues, each at least 6.3:1 against both the block and a highlighted line:
+
+| Role | Value | Use |
+| --- | --- | --- |
+| Code keyword | `#78a9ff` | Keywords, types, tags, builtins |
+| Code literal | `#d0e2ff` | Strings, numbers, constants |
+| Code comment | `#a8a8a8` | Comments, prompts, output |
+| Code inserted / deleted | `#42be65` / `#ff8389` | Diffs only, always with `+` / `-` |
+| Code highlight | `#262626` | Highlighted line background, with a keyword-blue edge |
+
+Everything else in code, including names, operators, and punctuation, stays inverse ink.
+
 ### Color rules
 
 - Blue is scarce. It means interaction, focus, or deliberate emphasis.

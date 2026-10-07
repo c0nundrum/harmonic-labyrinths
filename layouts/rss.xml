@@ -1,0 +1,39 @@
+{{- /*
+  RSS 2.0 with full content. The site feed carries writing and notes only;
+  section, tag, and series feeds carry their own pages. Root-relative URLs in
+  content are made absolute, since feed readers do not know the base path.
+*/ -}}
+{{- $pages := cond .IsHome (where site.RegularPages "Section" "in" (slice "writing" "notes")) .RegularPages -}}
+{{- $pages = $pages.ByDate.Reverse -}}
+{{- with site.Config.Services.RSS.Limit }}{{ if ge . 1 }}{{ $pages = first . $pages }}{{ end }}{{ end -}}
+{{- $base := urls.Parse site.BaseURL -}}
+{{- $origin := printf "%s://%s" $base.Scheme $base.Host -}}
+{{- $rfc822 := "Mon, 02 Jan 2006 15:04:05 -0700" -}}
+{{- printf "<?xml version=%q encoding=%q standalone=%q?>" "1.0" "utf-8" "yes" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ or .Description site.Params.description }}</description>
+    <language>{{ site.Language.Locale }}</language>
+    {{- with $pages }}
+    <lastBuildDate>{{ (index . 0).Lastmod.Format $rfc822 }}</lastBuildDate>
+    {{- end }}
+    {{- with .OutputFormats.Get "rss" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml"/>
+    {{- end }}
+    {{- range $pages }}
+    {{- $content := .Content | replaceRE `(href|src)="/` (printf `$1="%s/` $origin) }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <guid isPermaLink="true">{{ .Permalink }}</guid>
+      <pubDate>{{ .Date.Format $rfc822 }}</pubDate>
+      {{- range .GetTerms "tags" }}
+      <category>{{ .LinkTitle }}</category>
+      {{- end }}
+      <description>{{ $content | transform.XMLEscape | safeHTML }}</description>
+    </item>
+    {{- end }}
+  </channel>
+</rss>

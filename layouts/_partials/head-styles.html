@@ -10,3 +10,12 @@
 {{- end -}}
 <link rel="preload" href="{{ "fonts/IBMPlexSans-Regular-Latin1.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+{{- /* Render content first so the passthrough hook can record math (see render-passthrough.html). */ -}}
+{{- $noop := .WordCount -}}
+{{- if .Store.Get "hasMath" -}}
+  {{- $katex := resources.Get "css/vendor/katex.css" | resources.Copy "css/katex.css" -}}
+  {{- if hugo.IsProduction -}}
+    {{- $katex = $katex | minify | fingerprint -}}
+  {{- end }}
+<link rel="stylesheet" href="{{ $katex.RelPermalink }}">
+{{- end -}}

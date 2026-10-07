@@ -37,7 +37,27 @@ titleCaseStyle = "firstupper"
 # Highlighting emits classes; colors come from assets/css, not inline styles.
 [markup.highlight]
   noClasses = false
+  # Line numbers inline (and unselectable), so highlighted lines span the number too.
+  lineNumbersInTable = false
 
 # Images alone on a line render as <figure> (layouts/_markup/render-image.html).
 [markup.goldmark.parser]
   wrapStandAloneImageWithinParagraph = false
+
+# Mathematics: TeX between these delimiters is rendered at build time by
+# layouts/_markup/render-passthrough.html. No math JavaScript ships.
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["\\[", "\\]"], ["$$", "$$"]]
+    inline = [["\\(", "\\)"], ["$", "$"]]
+
+# Feeds: the site, each section, and each tag or series. Not the tag index.
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html", "rss"]
+
+[services.rss]
+  limit = 20

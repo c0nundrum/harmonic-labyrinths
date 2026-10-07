@@ -24,6 +24,15 @@
   --color-warning: #f1c21b;
   --color-error: #da1e28;
 
+  /* Code on the inverse surface — DESIGN.md §2, contrast ≥ 6.3:1 on both backgrounds */
+  --color-code-ink: var(--color-inverse-ink);
+  --color-code-keyword: #78a9ff;
+  --color-code-literal: #d0e2ff;
+  --color-code-comment: #a8a8a8;
+  --color-code-inserted: #42be65;
+  --color-code-deleted: #ff8389;
+  --color-code-highlight: #262626;
+
   /* Roles */
   --color-hairline: var(--color-surface-2);
   --color-hairline-strong: var(--color-ink-subtle);

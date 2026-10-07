@@ -1,7 +1,6 @@
 /*
  * Code (DESIGN.md §8): IBM Plex Mono, inverse surface for blocks,
  * horizontal scrolling instead of destructive wrapping.
- * Token colors for syntax highlighting arrive in Phase 3.
  */
 
 :not(pre) > code,
@@ -22,8 +21,10 @@ a > code {
 }
 
 pre {
+  --code-pad: var(--gutter);
+
   margin: 0;
-  padding: var(--space-4) var(--gutter);
+  padding: var(--space-4) var(--code-pad);
   overflow-x: auto;
   background: var(--color-inverse);
   color: var(--color-inverse-ink);
@@ -46,6 +47,111 @@ pre:focus-visible {
 
 @media (min-width: 42rem) {
   pre {
-    padding: var(--space-6);
+    --code-pad: var(--space-6);
+
+    padding-block: var(--space-6);
   }
+}
+
+/*
+ * Syntax highlighting (Chroma classes, emitted at build time).
+ * Restrained by design: keywords in blue, literals in pale blue, comments
+ * receded, everything else plain ink. Diff colors are semantic and always
+ * accompanied by the +/- marker in the text.
+ */
+
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr,
+.chroma .kt,
+.chroma .ow,
+.chroma .nt,
+.chroma .nb,
+.chroma .bp {
+  color: var(--color-code-keyword);
+}
+
+.chroma .s,
+.chroma .sa,
+.chroma .sb,
+.chroma .sc,
+.chroma .dl,
+.chroma .sd,
+.chroma .s2,
+.chroma .se,
+.chroma .sh,
+.chroma .si,
+.chroma .sx,
+.chroma .sr,
+.chroma .s1,
+.chroma .ss,
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo,
+.chroma .l,
+.chroma .ld,
+.chroma .no {
+  color: var(--color-code-literal);
+}
+
+.chroma .c,
+.chroma .ch,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs,
+.chroma .cp,
+.chroma .cpf,
+.chroma .go,
+.chroma .gp {
+  color: var(--color-code-comment);
+}
+
+.chroma .gi {
+  color: var(--color-code-inserted);
+}
+
+.chroma .gd,
+.chroma .gr,
+.chroma .gt,
+.chroma .err {
+  color: var(--color-code-deleted);
+}
+
+.chroma .ge {
+  font-style: italic;
+}
+
+.chroma .gs,
+.chroma .gh,
+.chroma .gu {
+  font-weight: var(--weight-semibold);
+}
+
+/* Line structure, numbers, and highlighted lines ({hl_lines=[2]}). */
+
+.chroma .line {
+  display: flex;
+}
+
+.chroma .hl {
+  display: block;
+  margin-inline: calc(-1 * var(--code-pad));
+  padding-inline: var(--code-pad);
+  background: var(--color-code-highlight);
+  box-shadow: inset 2px 0 0 var(--color-code-keyword);
+}
+
+.chroma .ln {
+  min-width: 2ch;
+  margin-inline-end: var(--space-4);
+  color: var(--color-code-comment);
+  text-align: end;
+  user-select: none;
 }

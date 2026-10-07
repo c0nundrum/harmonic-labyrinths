@@ -164,6 +164,19 @@
   margin-block-start: var(--space-4);
 }
 
+/* Mathematics — rendered by KaTeX at build time (DESIGN.md §8). */
+
+.prose > .math-display {
+  grid-column: wide;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: var(--space-1);
+}
+
+.prose .katex-display {
+  margin: 0;
+}
+
 /* Rules */
 
 .prose > hr,

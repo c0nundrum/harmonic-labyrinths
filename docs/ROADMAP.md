@@ -30,7 +30,7 @@ Hugo configuration, permalinks, taxonomies, archetypes, section stubs, provision
 - Link render hook so root-relative Markdown links (`/about/`) resolve under the site's base path; today they escape a project-site subpath.
 - Zero client JavaScript.
 
-## Phase 3 — Technical content
+## Phase 3 — Technical content ✓
 
 - Build-time syntax highlighting with contrast-checked colors on the inverse surface.
 - Build-time math via `transform.ToMath`; display equations in the wide column.

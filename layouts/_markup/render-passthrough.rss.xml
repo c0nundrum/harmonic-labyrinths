@@ -1,0 +1,9 @@
+{{- /* Feeds: MathML only. Readers do not load the KaTeX stylesheet, so the HTML rendering would duplicate every formula. */ -}}
+{{- $opts := dict "output" "mathml" "displayMode" (eq .Type "block") "throwOnError" true -}}
+{{- with try (transform.ToMath .Inner $opts) -}}
+  {{- with .Err -}}
+    {{- errorf "%s: KaTeX could not render %q: %s" $.Position $.Inner . -}}
+  {{- else -}}
+    {{- .Value -}}
+  {{- end -}}
+{{- end -}}

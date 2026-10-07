@@ -45,9 +45,11 @@ hugo server --buildDrafts  # preview at http://localhost:1313/harmonic-labyrinth
 hugo --gc --minify         # production build into public/
 ```
 
+When upgrading Hugo, check the KaTeX version it embeds: `assets/css/vendor/katex.css` and `static/fonts/katex/` must match it, or math renders with misaligned glyphs.
+
 ## Status
 
-Bootstrap phase: scaffolding is in place, design and templates are not. See [docs/ROADMAP.md](./docs/ROADMAP.md).
+Bootstrap phase: design, templates, and technical content are in place; deployment is next. See [docs/ROADMAP.md](./docs/ROADMAP.md).
 
 Hugo was chosen because it covers Markdown, build-time syntax highlighting, build-time math, footnotes, RSS, sitemaps, and draft exclusion without adding package dependencies.
 

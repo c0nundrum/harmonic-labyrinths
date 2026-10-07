@@ -70,11 +70,40 @@ func Fibonacci(n int) int {
 }
 ```
 
+A block with a highlighted line and line numbers:
+
+```python {linenos=true hl_lines=[3]}
+def mean(xs: list[float]) -> float:
+    """Arithmetic mean; raises on empty input."""
+    return sum(xs) / len(xs)  # the line under discussion
+```
+
+A diff, where color is backed by the `+` and `-` markers:
+
+```diff
+- prose column: 720px
++ prose column: 600px
+```
+
 A block without a language, with a line long enough to force horizontal scrolling rather than wrapping:
 
 ```
 $ hugo --gc --minify --panicOnWarning --baseURL https://example.org/a/very/long/path/that/keeps/going/until/it/must/scroll/
 ```
+
+## Mathematics
+
+Inline mathematics sits on the line: the identity $e^{i\pi} + 1 = 0$, a sum \(\sum_{k=1}^{n} k = \tfrac{n(n+1)}{2}\), and a probability $P(A \mid B)$. A literal dollar sign is escaped: it costs \$5.
+
+A display equation is centered and scrolls rather than overflowing:
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
+$$
+
+$$
+\mathcal{L}(\theta) = -\sum_{i=1}^{N} \Big[ y_i \log \sigma(\theta^\top x_i) + (1 - y_i) \log\big(1 - \sigma(\theta^\top x_i)\big) \Big] + \frac{\lambda}{2} \lVert \theta \rVert_2^2
+$$
 
 ## Table
 

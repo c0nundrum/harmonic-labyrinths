@@ -188,6 +188,8 @@ When using mathematics:
 - show enough intermediate reasoning that the result can be followed;
 - prefer a smaller number of meaningful equations over ornamental formalism.
 
+Write TeX between `$…$` or `\(…\)` inline and `$$…$$` or `\[…\]` for display. It is rendered at build time; invalid TeX fails the build. Escape a literal dollar sign as `\$`, otherwise "costs $5 and $10" becomes math.
+
 Math should clarify the argument, not certify it as serious.
 
 ### Code
@@ -200,6 +202,14 @@ Code examples should be:
 - tested when the article claims they work.
 
 If code is intentionally pseudocode, say so.
+
+Highlighting happens at build time. Fence options can number or emphasize lines when the text refers to them:
+
+````markdown
+```python {linenos=true hl_lines=[3]}
+...
+```
+````
 
 ### Experiments
 
