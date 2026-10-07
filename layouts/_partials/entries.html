@@ -1,0 +1,27 @@
+{{- /*
+  A list of pages.
+  pages     the pages to list
+  level     heading level for titles (default 2)
+  numbered  show "Part N" instead of the date, for series in reading order
+*/ -}}
+{{- $level := .level | default 2 -}}
+{{- $numbered := .numbered | default false -}}
+{{- with .pages }}
+{{ if $numbered }}<ol class="entries">{{ else }}<ul class="entries">{{ end }}
+  {{- range $i, $p := . }}
+  <li class="entry">
+    {{ printf "<h%d class=%q>" $level "entry-title" | safeHTML }}<a href="{{ $p.RelPermalink }}">{{ $p.LinkTitle }}</a>{{ printf "</h%d>" $level | safeHTML }}
+    {{- with $p.Description }}
+    <p class="entry-description">{{ . }}</p>
+    {{- end }}
+    {{- if $numbered }}
+    <p class="entry-marker">Part {{ add $i 1 }}</p>
+    {{- else }}
+    <p class="entry-marker"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format "2 Jan 2006" }}</time></p>
+    {{- end }}
+  </li>
+  {{- end }}
+{{ if $numbered }}</ol>{{ else }}</ul>{{ end }}
+{{- else }}
+<p class="empty">Nothing published yet.</p>
+{{- end }}

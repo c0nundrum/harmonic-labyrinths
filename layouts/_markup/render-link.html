@@ -1,0 +1,40 @@
+{{- /*
+  Resolves Markdown links against the site, so they survive any base path.
+
+  A root-relative link may name a published URL ("/context-is-not-memory/")
+  or a content path ("/writing/context-is-not-memory"). Either becomes the
+  page's permalink under the base path. A root-relative link without a file
+  extension that matches no page is broken: warn, which fails the production
+  build. Other root-relative paths ("/fonts/x.woff2") get the base path.
+
+  Relative links to pages or page resources resolve the same way. Absolute
+  URLs, fragments, and anything unrecognized pass through unchanged.
+*/ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $href := .Destination -}}
+{{- if and (not $u.IsAbs) $u.Path -}}
+  {{- $path := $u.Path -}}
+  {{- $target := or ($.PageInner.GetPage $path) ($.PageInner.Resources.Get $path) -}}
+  {{- with $target -}}
+    {{- $href = .RelPermalink -}}
+  {{- else -}}
+    {{- if hasPrefix $path "/" -}}
+      {{- if not (path.Ext $path) -}}
+        {{- if not (hasSuffix $path "/") }}{{ $path = printf "%s/" $path }}{{ end -}}
+        {{- $href = strings.TrimPrefix "/" $path | relURL -}}
+        {{- $published := partialCached "published-urls.html" . -}}
+        {{- if not (index $published $href) -}}
+          {{- warnf "%s: link to %q matches no published page" $.PageInner.File.Path $u.Path -}}
+        {{- end -}}
+      {{- else -}}
+        {{- $href = strings.TrimPrefix "/" $path | relURL -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $href = $path -}}
+    {{- end -}}
+  {{- end -}}
+  {{- with $u.RawQuery }}{{ $href = printf "%s?%s" $href . }}{{ end -}}
+  {{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+{{- end -}}
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text }}</a>
+{{- /* no trailing newline: links are inline */ -}}

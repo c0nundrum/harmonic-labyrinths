@@ -7,6 +7,8 @@ baseURL = "https://c0nundrum.github.io/harmonic-labyrinths/"
 locale = "en"
 title = "Harmonic Labyrinths"
 enableRobotsTXT = true
+# Keep section and taxonomy titles exactly as authored ("ai", not "Ai").
+capitalizeListTitles = false
 # Sentence case for generated titles (DESIGN.md §3).
 titleCaseStyle = "firstupper"
 
@@ -20,6 +22,10 @@ titleCaseStyle = "firstupper"
   writing = "/:slugorcontentbasename/"
   notes = "/notes/:slugorcontentbasename/"
 
+[params]
+  description = "A personal site for deep technical and intellectual writing."
+  source = "https://github.com/c0nundrum/harmonic-labyrinths"
+
 [taxonomies]
   tag = "tags"
   series = "series"
@@ -31,3 +37,7 @@ titleCaseStyle = "firstupper"
 # Highlighting emits classes; colors come from assets/css, not inline styles.
 [markup.highlight]
   noClasses = false
+
+# Images alone on a line render as <figure> (layouts/_markup/render-image.html).
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false

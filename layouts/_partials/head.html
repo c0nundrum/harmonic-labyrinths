@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+{{- with or .Description site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+{{- if or .Params.noindex (eq .Kind "404") }}
+<meta name="robots" content="noindex">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+{{- with site.Home.OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ site.Title }}">
+{{- end }}
+{{- if not .IsHome }}
+{{- with .OutputFormats.Get "rss" }}
+<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} · {{ site.Title }}">
+{{- end }}
+{{- end }}
+{{ partial "opengraph.html" . }}
+{{ partial "head-styles.html" . }}

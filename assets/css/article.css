@@ -1,0 +1,77 @@
+/* Article page chrome, in DESIGN.md §7 order: context, title, dek, metadata, body, series navigation. */
+
+.article-header {
+  padding-block: var(--space-16) var(--space-12);
+}
+
+.article-header > * + * {
+  margin-block-start: var(--space-4);
+}
+
+/* Titles may extend past the prose column but stay anchored to its left edge. */
+.article-title {
+  grid-column: content-start / wide-end;
+  font-size: var(--text-article-title);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-article-title);
+}
+
+.article-context,
+.article-meta {
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+  color: var(--color-ink-muted);
+}
+
+.article-header > .article-meta {
+  margin-block-start: var(--space-6);
+}
+
+.article-meta p + p {
+  margin-block-start: var(--space-1);
+}
+
+/* Previous / next within a series */
+
+.series-pager {
+  margin-block-start: var(--space-16);
+}
+
+.series-pager > div {
+  display: grid;
+  gap: 0 var(--space-6);
+  border-block-start: var(--hairline);
+}
+
+.series-pager a {
+  display: block;
+  padding-block: var(--space-4);
+  text-decoration: none;
+}
+
+.series-pager a:hover .series-pager__title {
+  text-decoration-thickness: 2px;
+}
+
+.series-pager__label {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--color-ink-muted);
+}
+
+.series-pager__title {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+@media (min-width: 42rem) {
+  .series-pager > div {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .series-pager__next {
+    grid-column: 2;
+    text-align: end;
+  }
+}

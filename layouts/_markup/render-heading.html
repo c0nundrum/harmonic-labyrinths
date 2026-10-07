@@ -1,0 +1,16 @@
+{{- /*
+  Headings link to themselves (DESIGN.md §7): the heading text is the link,
+  so there is no permanent hash icon and the heading's accessible name is
+  unchanged. Headings that already contain a link are left alone.
+*/ -}}
+<h{{ .Level }} id="{{ .Anchor }}"
+  {{- range $k, $v := .Attributes }}
+    {{- if ne $k "id" }}{{ printf " %s=%q" $k $v | safeHTMLAttr }}{{ end }}
+  {{- end }}>
+  {{- if strings.Contains .Text "<a " -}}
+    {{ .Text }}
+  {{- else -}}
+    <a class="heading-anchor" href="#{{ .Anchor }}">{{ .Text }}</a>
+  {{- end -}}
+</h{{ .Level }}>
+{{- /* trailing newline */ -}}

@@ -87,7 +87,7 @@ $ hugo --gc --minify --panicOnWarning --baseURL https://example.org/a/very/long/
 
 ## Figure
 
-{{< figure src="loop.svg" alt="A three-stage loop: read, transform, and write, with write feeding back into read." caption="A figure breaks out into the wider column. Its caption stays at reading width." >}}
+![A three-stage loop: read, transform, and write, with write feeding back into read.](loop.svg "A figure breaks out into the wider column. Its caption stays at reading width.")
 
 ## Rule
 

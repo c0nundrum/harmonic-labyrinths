@@ -1,0 +1,13 @@
+{{- /* A series lists its pieces in reading order (series_weight), not by date. */ -}}
+{{ define "main" }}
+<div class="page grid">
+  <header class="page-header">
+    <p class="page-context"><a href="{{ .Parent.RelPermalink }}">Series</a></p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="lead">{{ . }}</p>
+    {{- end }}
+  </header>
+  {{ partial "entries.html" (dict "pages" .Pages "level" 2 "numbered" true) }}
+</div>
+{{ end }}

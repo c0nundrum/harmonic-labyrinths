@@ -21,7 +21,7 @@ Hugo configuration, permalinks, taxonomies, archetypes, section stubs, provision
 - Self-hosted IBM Plex (OFL), latin-subset woff2: Sans 300 / 400 / 400 italic / 600, Mono 400. `font-display: swap`; preload Sans 400 only.
 - A specimen page exercising every element (headings, prose, footnotes, code, math, tables, figures, cards, focus states). Excluded from indexes, feeds, and sitemap; used for design review and accessibility checks.
 
-## Phase 2 — Templates
+## Phase 2 — Templates ✓
 
 - Base layout: skip link, 48–56px header (Writing / Notes / About), inverse footer (source, RSS).
 - Article template in DESIGN.md §7 order, including series context and previous / next.

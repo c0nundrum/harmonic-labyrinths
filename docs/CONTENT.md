@@ -85,6 +85,17 @@ hugo new content notes/<slug>.md
 
 New pieces start as drafts.
 
+## Internal links
+
+Link to other pieces with ordinary Markdown, using either the published URL or the content path:
+
+```markdown
+[an essay](/context-is-not-memory/)
+[the same essay](/writing/context-is-not-memory)
+```
+
+Both resolve to the correct address under any base path. A root-relative link that matches no published page fails the production build, so broken internal links, including links to drafts, cannot ship.
+
 ## Slugs and URLs
 
 Prefer short, human-readable slugs.
@@ -215,6 +226,14 @@ Each meaningful figure needs:
 - a source / attribution when it is not original.
 
 Prefer diagrams that remain understandable in the site's restrained neutral + blue visual system.
+
+An image on its own line becomes a figure. The Markdown image title becomes its caption and may contain Markdown:
+
+```markdown
+![Alt text describing what the figure shows.](diagram.svg "Caption, with a [source](https://example.org/).")
+```
+
+Keep the image beside the piece by making it a folder (`content/writing/<slug>/index.md` plus `diagram.svg`).
 
 ## Tags and categories
 

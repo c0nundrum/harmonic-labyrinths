@@ -1,0 +1,37 @@
+{{- /*
+  Series position for a page, used above the title ("context") and after the
+  body ("pager"). Reading order is the term's page order, set by series_weight.
+  Call with (dict "page" . "part" "context"|"pager").
+*/ -}}
+{{- $page := .page -}}
+{{- $part := .part -}}
+{{- range $page.GetTerms "series" }}
+  {{- $series := . -}}
+  {{- $pages := $series.Pages -}}
+  {{- $index := -1 -}}
+  {{- range $i, $p := $pages }}{{ if eq $p.Path $page.Path }}{{ $index = $i }}{{ end }}{{ end -}}
+  {{- if eq $part "context" }}
+<p class="article-context">Part {{ add $index 1 }} of {{ len $pages }} in <a href="{{ $series.RelPermalink }}">{{ $series.LinkTitle }}</a></p>
+  {{- else if gt (len $pages) 1 }}
+<nav class="series-pager grid" aria-label="{{ $series.LinkTitle }}: previous and next">
+  <div>
+    {{- if gt $index 0 }}
+    {{- with index $pages (sub $index 1) }}
+    <a class="series-pager__prev" href="{{ .RelPermalink }}" rel="prev">
+      <span class="series-pager__label">Previous</span>
+      <span class="series-pager__title">{{ .LinkTitle }}</span>
+    </a>
+    {{- end }}
+    {{- end }}
+    {{- if lt (add $index 1) (len $pages) }}
+    {{- with index $pages (add $index 1) }}
+    <a class="series-pager__next" href="{{ .RelPermalink }}" rel="next">
+      <span class="series-pager__label">Next</span>
+      <span class="series-pager__title">{{ .LinkTitle }}</span>
+    </a>
+    {{- end }}
+    {{- end }}
+  </div>
+</nav>
+  {{- end }}
+{{- end }}

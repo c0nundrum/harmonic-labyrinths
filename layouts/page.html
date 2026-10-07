@@ -1,9 +1,19 @@
 {{ define "main" }}
-<article class="prose">
-  <h1>{{ .Title }}</h1>
-  {{- with .Description }}
-  <p class="lead">{{ . }}</p>
-  {{- end }}
-  {{ .Content }}
+{{- $isEntry := in (slice "writing" "notes") .Section -}}
+<article class="article">
+  <header class="article-header grid">
+    {{- partial "series.html" (dict "page" . "part" "context") }}
+    <h1 class="article-title">{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="lead">{{ . }}</p>
+    {{- end }}
+    {{- if $isEntry }}
+    {{ partial "article-meta.html" . }}
+    {{- end }}
+  </header>
+  <div class="prose">
+    {{ .Content }}
+  </div>
+  {{- partial "series.html" (dict "page" . "part" "pager") }}
 </article>
 {{ end }}

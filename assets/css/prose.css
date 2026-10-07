@@ -1,24 +1,15 @@
 /*
  * Prose: the long-form reading column (DESIGN.md §4, §7, §8).
  *
- * `.prose` is a grid with a narrow content column and a wider breakout column.
- * Every child sits in the content column; code, figures, tables, and display
- * math may use the wide column. Grid items do not collapse margins, so vertical
- * rhythm comes only from margin-block-start.
+ * `.prose` uses the shared column grid from layout.css. Every child sits in the
+ * content column; code, figures, tables, and display math may use the wide
+ * column. Grid items do not collapse margins, so vertical rhythm comes only
+ * from margin-block-start.
  */
 
 .prose {
   --flow: var(--space-6);
-  --half-breakout: calc((var(--measure-wide) - var(--measure-prose)) / 2);
 
-  display: grid;
-  grid-template-columns:
-    [full-start] minmax(var(--gutter), 1fr)
-    [wide-start] minmax(0, var(--half-breakout))
-    [content-start] min(var(--measure-prose), 100% - 2 * var(--gutter))
-    [content-end] minmax(0, var(--half-breakout))
-    [wide-end] minmax(var(--gutter), 1fr)
-    [full-end];
   font-size: var(--text-prose);
   line-height: var(--leading-prose);
   overflow-wrap: break-word;
@@ -46,6 +37,30 @@
 .prose h3,
 .prose h4 {
   scroll-margin-block-start: var(--space-8);
+}
+
+/* Headings link to themselves; the "#" appears on hover or focus only. */
+
+.heading-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+
+.heading-anchor:hover {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+}
+
+.heading-anchor::after {
+  content: "#" / "";
+  margin-inline-start: 0.3em;
+  color: var(--color-ink-subtle);
+  opacity: 0;
+}
+
+.heading-anchor:hover::after,
+.heading-anchor:focus-visible::after {
+  opacity: 1;
 }
 
 .prose h2 {
@@ -86,12 +101,6 @@
 
 .prose p {
   text-wrap: pretty;
-}
-
-.prose .lead {
-  font-size: var(--text-lead);
-  line-height: var(--leading-lead);
-  color: var(--color-ink-muted);
 }
 
 .prose small {

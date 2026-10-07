@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="page grid">
+  <header class="page-header">
+    <h1 class="display">{{ site.Title }}</h1>
+    {{- with .Description }}
+    <p class="lead">{{ . }}</p>
+    {{- end }}
+  </header>
+  {{- range slice "writing" "notes" }}
+  {{- with site.GetPage (printf "/%s" .) }}
+  <section class="page-section subgrid" aria-labelledby="recent-{{ .Section }}">
+    <h2 id="recent-{{ .Section }}">{{ .Title }}</h2>
+    {{ partial "entries.html" (dict "pages" (first 8 .Pages) "level" 3) }}
+    {{- if .Pages }}
+    <p><a href="{{ .RelPermalink }}">All {{ lower .Title }}</a></p>
+    {{- end }}
+  </section>
+  {{- end }}
+  {{- end }}
+</div>
+{{ end }}

@@ -1,0 +1,25 @@
+{{- /*
+  An image on its own line becomes a figure; its Markdown title becomes the
+  caption:  ![Alt text](diagram.svg "Caption, with *Markdown*.")
+  Raster page resources get intrinsic width and height to avoid layout shift.
+*/ -}}
+{{- $u := urls.Parse .Destination -}}
+{{- $src := .Destination -}}
+{{- $width := 0 -}}
+{{- $height := 0 -}}
+{{- if not $u.IsAbs -}}
+  {{- with $.PageInner.Resources.Get $u.Path -}}
+    {{- $src = .RelPermalink -}}
+    {{- if and (eq .ResourceType "image") (ne .MediaType.Type "image/svg+xml") -}}
+      {{- $width = .Width -}}
+      {{- $height = .Height -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if .IsBlock }}<figure>{{ end -}}
+<img src="{{ $src }}" alt="{{ .PlainText }}"
+  {{- with $width }} width="{{ . }}" height="{{ $height }}"{{ end }} loading="lazy" decoding="async">
+{{- if .IsBlock -}}
+  {{- with .Title }}<figcaption>{{ . | markdownify }}</figcaption>{{ end -}}
+</figure>
+{{- end -}}

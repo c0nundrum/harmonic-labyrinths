@@ -1,4 +1,4 @@
 ---
 title: "Harmonic Labyrinths"
-description: "Deep technical and intellectual writing."
+description: "A personal site for deep technical and intellectual writing."
 ---

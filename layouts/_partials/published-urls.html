@@ -1,0 +1,6 @@
+{{- /* Set of every published page's RelPermalink. Call with partialCached: built once per build. */ -}}
+{{- $s := newScratch -}}
+{{- range site.Pages -}}
+  {{- $s.SetInMap "urls" .RelPermalink true -}}
+{{- end -}}
+{{- return $s.Get "urls" -}}

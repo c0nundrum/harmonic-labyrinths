@@ -1,5 +1,5 @@
 {{- /* Stylesheets are concatenated in cascade order; see assets/css/tokens.css. */ -}}
-{{- $files := slice "fonts" "tokens" "base" "prose" "code" -}}
+{{- $files := slice "fonts" "tokens" "base" "layout" "prose" "code" "article" -}}
 {{- $resources := slice -}}
 {{- range $files -}}
   {{- $resources = $resources | append (resources.Get (printf "css/%s.css" .)) -}}

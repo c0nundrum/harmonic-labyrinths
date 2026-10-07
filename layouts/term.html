@@ -1,0 +1,12 @@
+{{ define "main" }}
+<div class="page grid">
+  <header class="page-header">
+    <p class="page-context"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a></p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Description }}
+    <p class="lead">{{ . }}</p>
+    {{- end }}
+  </header>
+  {{ partial "entries.html" (dict "pages" .Pages "level" 2) }}
+</div>
+{{ end }}

@@ -1,29 +1,14 @@
-{{- /* Provisional shell. Header, footer, and navigation arrive in Phase 2 (docs/ROADMAP.md). */ -}}
 <!doctype html>
 <html lang="{{ site.Language.Locale }}">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-  {{- with .Description }}
-  <meta name="description" content="{{ . }}">
-  {{- end }}
-  {{- if .Params.noindex }}
-  <meta name="robots" content="noindex">
-  {{- end }}
-  <link rel="canonical" href="{{ .Permalink }}">
-  {{- range .AlternativeOutputFormats }}
-  {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
-  {{- end }}
-  {{ partial "head-styles.html" . }}
+  {{ partial "head.html" . }}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header>
-    <a href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
-  </header>
+  {{ partial "site-header.html" . }}
   <main id="main" tabindex="-1">
     {{ block "main" . }}{{ end }}
   </main>
+  {{ partial "site-footer.html" . }}
 </body>
 </html>
