@@ -1,0 +1,12 @@
+{{- /* Stylesheets are concatenated in cascade order; see assets/css/tokens.css. */ -}}
+{{- $files := slice "fonts" "tokens" "base" "prose" "code" -}}
+{{- $resources := slice -}}
+{{- range $files -}}
+  {{- $resources = $resources | append (resources.Get (printf "css/%s.css" .)) -}}
+{{- end -}}
+{{- $css := $resources | resources.Concat "css/main.css" -}}
+{{- if hugo.IsProduction -}}
+  {{- $css = $css | minify | fingerprint -}}
+{{- end -}}
+<link rel="preload" href="{{ "fonts/IBMPlexSans-Regular-Latin1.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ $css.RelPermalink }}">

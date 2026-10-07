@@ -1,0 +1,51 @@
+/*
+ * Code (DESIGN.md §8): IBM Plex Mono, inverse surface for blocks,
+ * horizontal scrolling instead of destructive wrapping.
+ * Token colors for syntax highlighting arrive in Phase 3.
+ */
+
+:not(pre) > code,
+kbd {
+  padding: 0.1em 0.3em;
+  font-size: 0.875em;
+  background: var(--color-surface-1);
+  border-radius: var(--radius);
+}
+
+kbd {
+  border: var(--hairline);
+  border-block-end-width: 2px;
+}
+
+a > code {
+  color: inherit;
+}
+
+pre {
+  margin: 0;
+  padding: var(--space-4) var(--gutter);
+  overflow-x: auto;
+  background: var(--color-inverse);
+  color: var(--color-inverse-ink);
+  font-size: var(--text-code);
+  line-height: var(--leading-code);
+  tab-size: 2;
+  border-radius: var(--radius);
+}
+
+pre code {
+  font-size: inherit;
+  background: none;
+  padding: 0;
+}
+
+pre:focus-visible {
+  outline-offset: 0;
+  outline-color: var(--color-primary);
+}
+
+@media (min-width: 42rem) {
+  pre {
+    padding: var(--space-6);
+  }
+}

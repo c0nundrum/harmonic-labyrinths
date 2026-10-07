@@ -74,7 +74,7 @@ The slug is the file name. A piece with images can be a folder instead: `content
 
 Set `slug:` in front matter only to decouple the URL from the file name.
 
-Essays share the root path with site sections, so an essay slug must not be `writing`, `notes`, `about`, `tags`, or `series`.
+Essays share the root path with site sections, so an essay slug must not be `writing`, `notes`, `about`, `tags`, `series`, `specimen`, `css`, or `fonts`.
 
 Start a new piece with:
 

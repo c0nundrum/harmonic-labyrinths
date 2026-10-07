@@ -14,7 +14,7 @@ Decide before Phase 5. If a custom domain is likely, use it from the first publi
 
 Hugo configuration, permalinks, taxonomies, archetypes, section stubs, provisional skeleton layouts.
 
-## Phase 1 — Design foundation
+## Phase 1 — Design foundation ✓
 
 - `assets/css/tokens.css`: every DESIGN.md value (color, spacing, type scale, breakpoints) as a custom property. Raw values appear nowhere else.
 - `base.css` (reset, typography, focus, reduced motion), `prose.css` (reading column, wide breakout column), `code.css` (inverse surface).
@@ -27,6 +27,7 @@ Hugo configuration, permalinks, taxonomies, archetypes, section stubs, provision
 - Article template in DESIGN.md §7 order, including series context and previous / next.
 - Home, Writing and Notes indexes as chronological lists; series, tag, and 404 pages.
 - Render hooks: quiet heading anchors, bidirectional footnotes, figures with captions, horizontally scrollable tables.
+- Link render hook so root-relative Markdown links (`/about/`) resolve under the site's base path; today they escape a project-site subpath.
 - Zero client JavaScript.
 
 ## Phase 3 — Technical content

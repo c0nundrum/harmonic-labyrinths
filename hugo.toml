@@ -27,3 +27,7 @@ titleCaseStyle = "firstupper"
 # Authors write `updated:` as documented in docs/CONTENT.md.
 [frontmatter]
   lastmod = ["updated", "lastmod", "date"]
+
+# Highlighting emits classes; colors come from assets/css, not inline styles.
+[markup.highlight]
+  noClasses = false

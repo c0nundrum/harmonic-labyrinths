@@ -1,0 +1,266 @@
+/*
+ * Prose: the long-form reading column (DESIGN.md §4, §7, §8).
+ *
+ * `.prose` is a grid with a narrow content column and a wider breakout column.
+ * Every child sits in the content column; code, figures, tables, and display
+ * math may use the wide column. Grid items do not collapse margins, so vertical
+ * rhythm comes only from margin-block-start.
+ */
+
+.prose {
+  --flow: var(--space-6);
+  --half-breakout: calc((var(--measure-wide) - var(--measure-prose)) / 2);
+
+  display: grid;
+  grid-template-columns:
+    [full-start] minmax(var(--gutter), 1fr)
+    [wide-start] minmax(0, var(--half-breakout))
+    [content-start] min(var(--measure-prose), 100% - 2 * var(--gutter))
+    [content-end] minmax(0, var(--half-breakout))
+    [wide-end] minmax(var(--gutter), 1fr)
+    [full-end];
+  font-size: var(--text-prose);
+  line-height: var(--leading-prose);
+  overflow-wrap: break-word;
+}
+
+.prose > * {
+  grid-column: content;
+}
+
+.prose > * + * {
+  margin-block-start: var(--flow);
+}
+
+.prose > .highlight,
+.prose > pre,
+.prose > figure,
+.prose > .table-wrap,
+.prose > .wide {
+  grid-column: wide;
+}
+
+/* Headings */
+
+.prose h2,
+.prose h3,
+.prose h4 {
+  scroll-margin-block-start: var(--space-8);
+}
+
+.prose h2 {
+  font-size: var(--text-h2);
+  line-height: var(--leading-h2);
+}
+
+.prose h3 {
+  font-size: var(--text-h3);
+  line-height: var(--leading-h3);
+}
+
+.prose h4 {
+  font-size: var(--text-h4);
+  line-height: var(--leading-prose);
+  font-weight: var(--weight-semibold);
+}
+
+.prose > * + h2 {
+  margin-block-start: var(--space-16);
+}
+
+.prose > * + h3 {
+  margin-block-start: var(--space-12);
+}
+
+.prose > * + h4 {
+  margin-block-start: var(--space-8);
+}
+
+.prose > h2 + *,
+.prose > h3 + *,
+.prose > h4 + * {
+  margin-block-start: var(--space-4);
+}
+
+/* Paragraph-level text */
+
+.prose p {
+  text-wrap: pretty;
+}
+
+.prose .lead {
+  font-size: var(--text-lead);
+  line-height: var(--leading-lead);
+  color: var(--color-ink-muted);
+}
+
+.prose small {
+  font-size: var(--text-small);
+}
+
+.prose sup,
+.prose sub {
+  line-height: 0;
+}
+
+.prose mark {
+  background: var(--color-surface-2);
+  color: inherit;
+}
+
+.prose abbr[title] {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
+/* Lists */
+
+.prose ul,
+.prose ol {
+  margin-block-end: 0;
+  padding-inline-start: var(--space-6);
+}
+
+.prose li + li,
+.prose li > ul,
+.prose li > ol {
+  margin-block-start: var(--space-2);
+}
+
+.prose li::marker {
+  color: var(--color-ink-muted);
+}
+
+.prose dt {
+  font-weight: var(--weight-semibold);
+}
+
+.prose dd {
+  padding-inline-start: var(--space-6);
+}
+
+.prose dd + dt {
+  margin-block-start: var(--space-3);
+}
+
+/* Quotations */
+
+.prose blockquote {
+  padding-inline-start: var(--space-6);
+  border-inline-start: 2px solid var(--color-hairline-strong);
+  color: var(--color-ink-muted);
+}
+
+.prose blockquote > * + * {
+  margin-block-start: var(--space-4);
+}
+
+/* Rules */
+
+.prose > hr,
+.prose > hr + * {
+  margin-block-start: var(--space-12);
+}
+
+/* Figures */
+
+.prose figure img,
+.prose figure svg {
+  margin-inline: auto;
+}
+
+.prose figcaption {
+  max-width: var(--measure-prose);
+  margin: var(--space-3) auto 0;
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+  color: var(--color-ink-muted);
+}
+
+/* Tables — hairlines only (DESIGN.md §8). */
+
+.prose .table-wrap {
+  overflow-x: auto;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.prose caption {
+  padding-block-end: var(--space-2);
+  text-align: start;
+  color: var(--color-ink-muted);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-3) var(--space-4);
+  border-block-end: var(--hairline);
+  text-align: start;
+  vertical-align: top;
+}
+
+.prose th {
+  font-weight: var(--weight-semibold);
+  border-block-end-color: var(--color-hairline-strong);
+}
+
+.prose th:first-child,
+.prose td:first-child {
+  padding-inline-start: 0;
+}
+
+.prose th:last-child,
+.prose td:last-child {
+  padding-inline-end: 0;
+}
+
+/* Footnotes — Goldmark output, links in both directions. */
+
+.prose .footnotes {
+  margin-block-start: var(--space-16);
+  font-size: var(--text-small);
+  line-height: var(--leading-small);
+  color: var(--color-ink-muted);
+}
+
+.prose .footnotes > hr {
+  margin-block-end: var(--space-6);
+}
+
+.prose .footnotes ol {
+  padding-inline-start: var(--space-6);
+}
+
+.prose .footnotes li {
+  scroll-margin-block-start: var(--space-8);
+}
+
+.prose .footnotes li:target {
+  /* An outline in the same color extends the highlight without shifting layout. */
+  background: var(--color-surface-1);
+  outline: var(--space-2) solid var(--color-surface-1);
+}
+
+.prose .footnote-ref {
+  padding-inline: 0.15em;
+  text-decoration: none;
+}
+
+.prose .footnote-ref:hover {
+  text-decoration: underline;
+}
+
+.prose [id^="fnref"] {
+  scroll-margin-block-start: var(--space-16);
+}
+
+.prose .footnote-backref {
+  text-decoration: none;
+  margin-inline-start: var(--space-1);
+}

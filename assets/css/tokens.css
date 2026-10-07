@@ -1,0 +1,97 @@
+/*
+ * Design tokens. DESIGN.md is the source of truth; this file is its only
+ * translation into values. Other stylesheets reference tokens, never raw values.
+ *
+ * Breakpoints cannot be custom properties inside @media, so they are listed
+ * here and repeated literally where used:
+ *   tablet 42rem (672px) · desktop 66rem (1056px) · large 82rem (1312px) · max 99rem (1584px)
+ */
+
+:root {
+  /* Color — DESIGN.md §2 */
+  --color-primary: #0f62fe;
+  --color-primary-hover: #0050e6;
+  --color-primary-pressed: #002d9c;
+  --color-ink: #161616;
+  --color-ink-muted: #525252;
+  --color-ink-subtle: #8d8d8d;
+  --color-canvas: #ffffff;
+  --color-surface-1: #f4f4f4;
+  --color-surface-2: #e0e0e0;
+  --color-inverse: #161616;
+  --color-inverse-ink: #f4f4f4;
+  --color-success: #24a148;
+  --color-warning: #f1c21b;
+  --color-error: #da1e28;
+
+  /* Roles */
+  --color-hairline: var(--color-surface-2);
+  --color-hairline-strong: var(--color-ink-subtle);
+  --color-focus: var(--color-primary);
+
+  /* Typography — DESIGN.md §3 */
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-display: clamp(2.75rem, 7vw, 4.75rem);
+  --text-article-title: clamp(2.25rem, 5vw, 3.75rem);
+  --text-h1: 2.625rem;
+  --text-h2: 2rem;
+  --text-h3: 1.5rem;
+  --text-h4: 1.125rem;
+  --text-lead: 1.25rem;
+  --text-prose: 1.125rem;
+  --text-body: 1rem;
+  --text-small: 0.875rem;
+  --text-caption: 0.75rem;
+  --text-code: 0.875rem;
+
+  --leading-display: 1.12;
+  --leading-article-title: 1.15;
+  --leading-h1: 1.2;
+  --leading-h2: 1.25;
+  --leading-h3: 1.33;
+  --leading-lead: 1.5;
+  --leading-prose: 1.6;
+  --leading-body: 1.5;
+  --leading-small: 1.4;
+  --leading-code: 1.5;
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-semibold: 600;
+
+  --tracking-body: 0.16px;
+
+  /* Spacing — 4px grid, DESIGN.md §4 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+
+  /* Layout */
+  --measure-prose: 37.5rem; /* ≈ 70 characters of Plex Sans at prose size; see DESIGN.md §4 */
+  --measure-wide: 52rem; /* breakout for code, figures, tables: ~7rem either side of prose */
+  --measure-max: 99rem;
+  --gutter: var(--space-4);
+  --header-height: 3rem;
+
+  /* Shape and interaction — DESIGN.md §5, §10 */
+  --radius: 0;
+  --hairline: 1px solid var(--color-hairline);
+  --focus-ring: 2px solid var(--color-focus);
+  --focus-offset: 2px;
+  --touch-target: 3rem;
+  --duration-fast: 110ms;
+}
+
+@media (min-width: 42rem) {
+  :root {
+    --gutter: var(--space-8);
+  }
+}

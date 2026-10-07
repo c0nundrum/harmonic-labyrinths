@@ -13,6 +13,8 @@ The system begins with the IBM design analysis published by getdesign.md and the
 
 Harmonic Labyrinths is independent and is not affiliated with or endorsed by IBM.
 
+Every value in this document is translated into CSS exactly once, as custom properties in `assets/css/tokens.css`. Stylesheets use tokens, not raw values; change a value here first, then in the tokens file.
+
 ## 1. Design character
 
 The site should feel:
@@ -130,8 +132,8 @@ Avoid arbitrary one-off spacing values when a token is close enough.
 ### Page geometry
 
 - Overall layouts may follow Carbon's 16 / 8 / 4 column idea.
-- Article prose should be much narrower than the full page: roughly **720–800px** maximum.
-- Supporting figures, equations, diagrams, and code may intentionally break out into a wider column.
+- Article prose width is set by characters per line (60–78), not pixels. IBM Plex Sans is narrow: at prose size a 720px column measured 80–92 characters per line, so the prose column is **600px (37.5rem)**, which measures roughly 60–76.
+- Supporting figures, equations, diagrams, code, and tables may break out into a wider column of **832px (52rem)**.
 - On large screens, whitespace should come from grid alignment rather than giant empty hero sections.
 - Separate sections using rhythm, subtle surface changes, or 1px hairlines.
 

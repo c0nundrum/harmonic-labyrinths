@@ -1,4 +1,4 @@
-{{- /* Provisional skeleton. Real templates arrive in Phase 2 (docs/ROADMAP.md). */ -}}
+{{- /* Provisional shell. Header, footer, and navigation arrive in Phase 2 (docs/ROADMAP.md). */ -}}
 <!doctype html>
 <html lang="{{ site.Language.Locale }}">
 <head>
@@ -8,16 +8,21 @@
   {{- with .Description }}
   <meta name="description" content="{{ . }}">
   {{- end }}
+  {{- if .Params.noindex }}
+  <meta name="robots" content="noindex">
+  {{- end }}
   <link rel="canonical" href="{{ .Permalink }}">
   {{- range .AlternativeOutputFormats }}
   {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
   {{- end }}
+  {{ partial "head-styles.html" . }}
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header>
     <a href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
   </header>
-  <main id="main">
+  <main id="main" tabindex="-1">
     {{ block "main" . }}{{ end }}
   </main>
 </body>
