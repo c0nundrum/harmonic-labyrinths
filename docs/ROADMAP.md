@@ -43,7 +43,7 @@ IBM Plex Serif for titles and dialogue speech; the H/L trip-let mark and home fi
 ## Phase 4 — Delivery
 
 - `.github/workflows/pages.yml`: pinned Hugo, build, deploy with the official Pages actions.
-- Pull request checks: build with `--panicOnWarning`, internal links (`htmltest`), accessibility smoke test (`pa11y-ci`), RSS / sitemap validity.
+- `tools/check.sh` on every push and pull request: build with `--panicOnWarning`, internal links and fragments (`htmltest`), axe on every sitemap page plus the specimen and 404 (`pa11y-ci`), RSS / sitemap validity.
 - Repository setting: Pages → Source → GitHub Actions. Custom domain DNS if chosen.
 
 ## Phase 5 — Launch

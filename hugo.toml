@@ -1,8 +1,8 @@
 # Harmonic Labyrinths — Hugo configuration.
 # Durable rules live in README.md, DESIGN.md, and docs/CONTENT.md.
 
-# Provisional: the production domain is not decided yet (see docs/ROADMAP.md).
-# CI overrides this with the URL GitHub Pages reports.
+# Production URL; CI builds and checks with exactly this value. If the site
+# moves to a custom domain, change it here (see docs/ROADMAP.md).
 baseURL = "https://c0nundrum.github.io/harmonic-labyrinths/"
 locale = "en"
 title = "Harmonic Labyrinths"

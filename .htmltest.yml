@@ -1,0 +1,7 @@
+# Link check for tools/check.sh. Runs on the base-path mirror of the build.
+DirectoryPath: .check
+CheckExternal: false
+CheckInternalHash: true
+IgnoreDirectoryMissingTrailingSlash: false
+EnforceHTTPS: false
+OutputDir: .check/.htmltest

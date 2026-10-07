@@ -329,6 +329,5 @@
 }
 
 .prose .footnote-backref {
-  text-decoration: none;
   margin-inline-start: var(--space-1);
 }

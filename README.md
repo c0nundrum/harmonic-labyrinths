@@ -45,11 +45,25 @@ hugo server --buildDrafts  # preview at http://localhost:1313/harmonic-labyrinth
 hugo --gc --minify         # production build into public/
 ```
 
+Before pushing, run the same checks CI runs:
+
+```sh
+brew install htmltest      # link checker; Node (npx) is also needed
+tools/check.sh             # build, XML, internal links, accessibility
+tools/check.sh --no-a11y   # skip the headless-browser accessibility pass
+```
+
+## Deployment
+
+Every push to `main` runs [`.github/workflows/pages.yml`](./.github/workflows/pages.yml): it builds the site, runs `tools/check.sh`, and deploys to GitHub Pages only if every check passes. Pull requests run the checks without deploying.
+
+The repository's Pages source must be set to **GitHub Actions** (Settings → Pages). The published URL comes from `baseURL` in `hugo.toml`.
+
 When upgrading Hugo, check the KaTeX version it embeds: `assets/css/vendor/katex.css` and `static/fonts/katex/` must match it, or math renders with misaligned glyphs.
 
 ## Status
 
-Bootstrap phase: design, templates, and technical content are in place; deployment is next. See [docs/ROADMAP.md](./docs/ROADMAP.md).
+Bootstrap phase: design, templates, technical content, and deployment are in place; launch content is next. See [docs/ROADMAP.md](./docs/ROADMAP.md).
 
 Hugo was chosen because it covers Markdown, build-time syntax highlighting, build-time math, footnotes, RSS, sitemaps, and draft exclusion without adding package dependencies.
 
